@@ -47,5 +47,10 @@ class StudentView extends View {
             include "app/Templates/dashboard/update_student_page.php";
         }
     }
-
+    
+    public function openSearchStudentPage($student_data){
+        if((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
+            include "app/Templates/dashboard/student_detail_page.php";
+        }
+    }
 }

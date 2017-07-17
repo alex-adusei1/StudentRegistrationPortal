@@ -48,8 +48,8 @@
                         <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                         <li><a href="?action=logout"><i class="fa fa-sign-out"></i> logout</a></li>
                     </ul>
-                    <form class="navbar-form navbar-right">
-                        <input type="text" class="form-control" placeholder="Search...">
+                    <form class="navbar-form navbar-right" role="form" action="index.php?action=search" method="post">
+                        <input type="text" name="search" class="form-control" placeholder="Search...">
                     </form>
                 </div>
             </div>

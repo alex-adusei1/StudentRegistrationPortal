@@ -48,7 +48,7 @@ class StudentController extends Controller {
      *      ]
      */
     public function indexDb() {
-        
+
         if (isset($_REQUEST['page'])) {
             $page = $_REQUEST['page'];
         } else {
@@ -69,14 +69,14 @@ class StudentController extends Controller {
         } else {
             $end_at = 10;
         }
-        
+
 //       echo "<br><br><br><br><br><br><br><br> page: $page   <br>";
 //            echo "Start From : $start_from <br> End At : $end_at";
 //        
         $pagination_student_parent = $this->student->getStudentLimitPaginationData($start_from, $end_at);
 
 //        print_r($pagination_student_parent);
-        
+
         $this->student_view->openViewStudentPage($pagination_student_parent, $total_pages, $start_from);
     }
 
@@ -257,18 +257,25 @@ class StudentController extends Controller {
 
         return $students;
     }
-    
-    public function checkEmail(){
+
+    public function checkEmail() {
         $email = $_REQUEST['data'];
         $result = $this->student->checkIfEmailExist($email);
-        if($result === 1){
+        if ($result === 1) {
             echo "<span class=\"label label-danger\"><i class=\"fa fa-thumbs-down\"></i> Email Already Exist</span>";
             return 1;
         }
-        if($result === 0){
+        if ($result === 0) {
             echo "<span class=\"label label-success\"><i class=\"fa fa-thumbs-up\"></i> Success</span>";
             return 0;
         }
     }
-    
+
+    public function search() {
+        $search = $_REQUEST['search'];
+        echo "we are searchhing";
+        $student_data = $this->student->searchStudent($search);
+        $this->student_view->openSearchStudentPage($student_data);
+    }
+
 }

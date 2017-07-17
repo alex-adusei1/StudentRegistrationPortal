@@ -111,5 +111,19 @@ class Student extends Model {
     }
     
     
+    public function searchStudent($search){
+        try {
+            $student_sql = "SELECT students.id ,students.first_name sfn , students.last_name sln, students.email se,  parents.first_name pfn, parents.last_name pln, parents.phone_number ppn, parents.address pa FROM students left join parents on students.id = parents.student_id WHERE students.first_name like '%$search'";
+            $sql = $this->conn->prepare($student_sql);
+            $sql->execute();
+
+            $result = $sql->setFetchMode(PDO::FETCH_ASSOC);
+            
+            return $sql->fetchAll();
+        } catch (PDOException $ex) {
+            die("failed to load data " . $ex->getMessage());
+        }
+    }
+    
 
 }

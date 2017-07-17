@@ -55,7 +55,9 @@ if ($action === "updateStudent") {
 if ($action === "logout") {
     header("Location: index.php");
 }
-
+if ($action ==="search") {
+    $student_controller->search();
+}
 //AJAX HANDLERS
 if($action === "checkEmail"){
     $student_controller->checkEmail();
